@@ -1,19 +1,34 @@
 from django.shortcuts import render
-from django.views import View # <- View class to handle requests
+from django.views import View 
 from django.http import HttpResponse # <- a class to handle sending a type of response
 from django.views.generic import TemplateView
 
-# Create your views here.
-
-# Here we will be creating a class called Home and extending it from the View class
 class Home(TemplateView):
     template_name = "home.html"
     
-    # def get(self, request):
-    #     # Here we are returning a generic response
-    #     # This is similar to response.send() in express
-    #     return HttpResponse("Dogs Home")
 
-class About(View):
-    def get(self, request):
-        return HttpResponse("About Dogs")
+class About(TemplateView):
+    template_name = "about.html"
+
+ #adds artist class for mock database data
+class Breed:
+    def __init__(self, name, image, description):
+        self.name = name
+        self.image = image
+        self.description = description
+
+
+breeds = [
+  Breed ("Little Spokane River", "https://assets.change.org/photos/9/lq/sr/HuLQsrEXlyAdApc-1600x900-noPad.jpg?1622402845",
+          "Blah"),
+  Breed ("Heyburn State Park",
+          "https://lh3.googleusercontent.com/p/AF1QipOheBfE-Bixtqcbm3zw5N_wif3JiDaAzkiKEb1I=s1360-w1360-h1020", "lake"),
+]
+
+class BreedsList(TemplateView):
+    template_name = "breeds_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["breeds"] = breeds # this is where we add the key into our context object for the view to use
+        return context
