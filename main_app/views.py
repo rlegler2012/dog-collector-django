@@ -30,5 +30,28 @@ class BreedsList(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["breeds"] = breeds # this is where we add the key into our context object for the view to use
+        context["breeds"] = breeds
+        return context
+
+
+class Activity:
+    def __init__(self, name, image, description):
+        self.name = name
+        self.image = image
+        self.description = description
+
+
+activitieslevel = [
+  Activity ("Low", "",
+          "Blah"),
+  Activity ("High",
+          "", "info"),
+]
+
+class ActivityLevelList(TemplateView):
+    template_name = "activitieslevel_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["activitieslevel"] = activitieslevel
         return context
