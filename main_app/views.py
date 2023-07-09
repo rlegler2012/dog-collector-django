@@ -4,6 +4,7 @@ from .models import Breed
 from django.http import HttpResponse # <- a class to handle sending a type of response
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
+from django.views.generic import DetailView
 
 class Home(TemplateView):
     template_name = "home.html"
@@ -28,7 +29,7 @@ class About(TemplateView):
 # ]
 
 class BreedList(TemplateView):
-    template_name = "breeds_list.html"
+    template_name = "breed_list.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -49,6 +50,9 @@ class BreedCreate(CreateView):
     template_name = "breed_create.html"
     success_url = "/breeds/"
 
+class BreedDetail(DetailView):
+    model = Breed
+    template_name = "breed_detail.html"
 # class Activity:
 #     def __init__(self, name, image, description):
 #         self.name = name
