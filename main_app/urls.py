@@ -5,5 +5,6 @@ urlpatterns = [
     path('', views.Home.as_view(), name="home"), # <- here we have added the new path
     path('about/', views.About.as_view(), name="about"),
     path('breeds/', views.BreedList.as_view(), name="breeds_list"),
+    path('breeds/new', views.BreedCreate.as_view(), name="breed_create"),
     # path('activitieslevel/', views.ActivityLevelList.as_view(), name="activitieslevel_list")
 ]

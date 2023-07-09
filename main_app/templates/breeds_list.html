@@ -14,6 +14,7 @@
   </div>
   <!--  This anchor tag will redirect back to breed list without a query param -->
   <a class="button is-dark" href="{% url 'breeds_list' %}">Clear Search</a>
+  <a class="button is-dark" href="{% url 'breed_create' %}">Add Breed</a>
 </form>
 <div class="gallery">
   {% for breed in breeds %}
