@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import View 
+from .models import Breed
 from django.http import HttpResponse # <- a class to handle sending a type of response
 from django.views.generic import TemplateView
 
@@ -10,7 +11,7 @@ class Home(TemplateView):
 class About(TemplateView):
     template_name = "about.html"
 
- #adds artist class for mock database data
+
 class Breed:
     def __init__(self, name, image, description):
         self.name = name
@@ -34,24 +35,24 @@ class BreedsList(TemplateView):
         return context
 
 
-class Activity:
-    def __init__(self, name, image, description):
-        self.name = name
-        self.image = image
-        self.description = description
+# class Activity:
+#     def __init__(self, name, image, description):
+#         self.name = name
+#         self.image = image
+#         self.description = description
 
 
-activitieslevel = [
-  Activity ("Low", "",
-          "Blah"),
-  Activity ("High",
-          "", "info"),
-]
+# activitieslevel = [
+#   Activity ("Low", "",
+#           "Blah"),
+#   Activity ("High",
+#           "", "info"),
+# ]
 
-class ActivityLevelList(TemplateView):
-    template_name = "activitieslevel_list.html"
+# class ActivityLevelList(TemplateView):
+#     template_name = "activitieslevel_list.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["activitieslevel"] = activitieslevel
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["activitieslevel"] = activitieslevel
+#         return context
