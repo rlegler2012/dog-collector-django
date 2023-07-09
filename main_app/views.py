@@ -12,11 +12,11 @@ class About(TemplateView):
     template_name = "about.html"
 
 
-class Breed:
-    def __init__(self, name, image, description):
-        self.name = name
-        self.image = image
-        self.description = description
+# class Breed:
+#     def __init__(self, name, img, description):
+#         self.name = name
+#         self.img = img
+#         self.description = description
 
 
 breeds = [
@@ -26,12 +26,20 @@ breeds = [
           "https://lh3.googleusercontent.com/p/AF1QipOheBfE-Bixtqcbm3zw5N_wif3JiDaAzkiKEb1I=s1360-w1360-h1020", "lake"),
 ]
 
-class BreedsList(TemplateView):
+class BreedList(TemplateView):
     template_name = "breeds_list.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["breeds"] = breeds
+        name = self.request.GET.get("name")
+        if name != None:
+            context["breeds"] = Breed.objects.filter(name__icontains=name)
+            # We add a header context that includes the search param
+            context["header"] = f"Searching for {name}"
+        else:
+            context["breeds"] = Breed.objects.all()
+            # default header for not searching 
+            context["header"] = "Trending Breeds"
         return context
 
 
