@@ -7,7 +7,7 @@ urlpatterns = [
     path('breeds/', views.BreedList.as_view(), name="breed_list"),
     path('breeds/new', views.BreedCreate.as_view(), name="breed_create"),
     path('breeds/<int:pk>/', views.BreedDetail.as_view(), name="breed_detail"),
-    path('breeds/<int:pk>/update', views.BreedUpdate.as_view(), name="breed_update")
-    # path('breeds/<int:pk>/delete',views.BreedDelete.as_view(), name="breed_delete"),
+    path('breeds/<int:pk>/update', views.BreedUpdate.as_view(), name="breed_update"),
+    path('breeds/<int:pk>/delete',views.BreedDelete.as_view(), name="breed_delete"),
     # path('activitieslevel/', views.ActivityLevelList.as_view(), name="activitieslevel_list")
 ]

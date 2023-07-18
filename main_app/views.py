@@ -4,7 +4,7 @@ from .models import Breed
 from django.http import HttpResponse # <- a class to handle sending a type of response
 from django.views.generic import TemplateView
 from django.views.generic import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
 
 class Home(TemplateView):
@@ -17,12 +17,6 @@ class About(TemplateView):
 
 
 #### Breed List #########
-# class Breed:
-#     def __init__(self, name, img, description):
-#         self.name = name
-#         self.img = img
-#         self.description = description
-
 
 breeds = [
   Breed ("Little Spokane River", "https://assets.change.org/photos/9/lq/sr/HuLQsrEXlyAdApc-1600x900-noPad.jpg?1622402845",
@@ -58,8 +52,7 @@ class BreedCreate(CreateView):
     # this will get the pk from the route and redirect to artist view
     def get_success_url(self):
         return reverse('breed_detail', kwargs={'pk': self.object.pk})
-        
-        
+             
 class BreedUpdate(UpdateView):
     model = Breed
     fields = ['name', 'img', 'description']
@@ -68,7 +61,10 @@ class BreedUpdate(UpdateView):
     def get_success_url(self):
         return reverse('breed_detail', kwargs={'pk': self.object.pk})  
     
-    
+class BreedDelete(DeleteView):
+    model = Breed
+    template_name = "breed_delete_confirmation.html"
+    success_url = "/breeds/"   
     
 # class Activity:
 #     def __init__(self, name, image, description):
