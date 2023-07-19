@@ -9,5 +9,6 @@ urlpatterns = [
     path('breeds/<int:pk>/', views.BreedDetail.as_view(), name="breed_detail"),
     path('breeds/<int:pk>/update', views.BreedUpdate.as_view(), name="breed_update"),
     path('breeds/<int:pk>/delete',views.BreedDelete.as_view(), name="breed_delete"),
-    # path('activitieslevel/', views.ActivityLevelList.as_view(), name="activitieslevel_list")
+    path('breeds/<int:pk>/activitys/new/', views.ActivityCreate.as_view(), name="activity_create"),
+    path('wants/<int:pk>/activitys/<int:activity_pk>/', views.DogOwnerWantsAssoc.as_view(), name="want_activity_assoc"),
 ]

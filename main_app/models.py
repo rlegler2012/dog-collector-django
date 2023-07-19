@@ -12,3 +12,19 @@ class Breed(models.Model):
 
     class Meta:
         ordering = ['name']
+        
+class Activity(models.Model):
+
+    level = models.CharField(max_length=150)
+    breed = models.ForeignKey(Breed, on_delete=models.CASCADE, related_name="activitys")
+
+    def __str__(self):
+        return self.level
+
+class DogOwnerWants(models.Model):
+    level = models.CharField(max_length=150)
+    activitys = models.ManyToManyField(Activity)
+
+    def __str__(self):
+        return self.level
+

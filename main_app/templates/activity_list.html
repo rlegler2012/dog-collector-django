@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Activity Levels Info{% endblock %}
+
+{% block content %}
+{% for activity in activitys %}
+<h1>{{activity.level}}</h1>
+{% empty %}
+<p>None Available</p>
+{% endfor %}
+{% endblock %}
